@@ -16,19 +16,16 @@ def is_prime(x):
     return True
 
 
-def next_prime_factor(number, known_factor):
-    if is_prime(number):
-        return number
-    number = number / known_factor
-    for i in range(known_factor, int(ceil(sqrt(number))) + 1):
+def first_prime_factor(number):
+    for i in range(1, ceil(sqrt(number)) + 1):
         if number % i == 0 and is_prime(i):
             return i
-    return known_factor
+    return number
     
 
 def highest_prime_factor(number):
     while number > 1:
-        x = next_prime_factor(number, 1)
+        x = first_prime_factor(number)
         number = number / x
     return x
 
